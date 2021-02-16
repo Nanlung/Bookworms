@@ -31,6 +31,7 @@ exports.createBookAds = async (req, res) => {
           Category: req.body.Category,
           Price: req.body.Price,
           Condition: req.body.Condition,
+          Location: req.body.Location,
           PostedBy: req.user,
           BookImages: req.file.path,
         },
@@ -58,7 +59,7 @@ exports.createBookAds = async (req, res) => {
   }
 };
 
-// routes to get the bookAds by their Category
+// route to get all Ads
 exports.getBooks = async (req, res) => {
   try {
     await BookAds.find({}, (error, book) => {
@@ -82,7 +83,6 @@ exports.getBooks = async (req, res) => {
 // routes to get the bookAds by their Category
 
 exports.getByCategory = async(req,res)=>{
-  if(req.isAuthenticated()) {
     try{
       await BookAds.find({Category:req.params.Category}, (error,book)=>{
           if(!error){
@@ -102,12 +102,9 @@ exports.getByCategory = async(req,res)=>{
      catch(err){
       return res.send('error' +err);
      }
- } else {
-   return res.send('you must be logged in..');
-//return res.render('/login');
- }
+ } 
 
-  }
+  
 
 
 exports.searchBook = async (req, res) => {

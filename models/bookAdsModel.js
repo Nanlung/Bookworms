@@ -29,6 +29,12 @@ const bookAdsSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+
+  Location: {
+    type: String,
+    required: true,
+  },
+
   PostedBy: {
     type: ObjectId,
     ref: "user",
@@ -37,6 +43,7 @@ const bookAdsSchema = new mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
+
 });
 
 // creating BookAds model

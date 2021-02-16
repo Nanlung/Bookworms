@@ -7,6 +7,15 @@ const MyAds = ()=>{
 
     const [data,setData] = useState([]);
 
+    const deleteAds = (id)=>{
+            axios.delete(`/bookads/deleteAds/${id}`)
+            .then(result=>{
+              console.log(result)
+              const newdata = result.data.book
+              setData(newdata)
+            })
+           }
+
     useEffect(()=>{
         axios.get("/bookads/myAds")
         .then(result=>{
@@ -38,6 +47,10 @@ return(
                         Ad Details
                           <i className="fas fa-chevron-right" />
               </NavLink>
+              <Link className="btn btn-primary"  onClick={()=>deleteAds(item._id)}>
+                          Delete Ad
+                          <i className="fas fa-chevron-right" />
+                        </Link>
                         </div>
                         </div>
                     )    
