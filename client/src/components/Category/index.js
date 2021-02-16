@@ -1,0 +1,48 @@
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import { Link, Route, NavLink } from 'react-router-dom';
+import './index.css';
+
+const Category = ({match})=>{
+
+    const [data,setData] = useState([]);
+
+    useEffect(()=>{
+        axios.get(`/bookads/viewAds/${match.params.Category}`)
+        .then(result=>{
+            console.log(result.data);
+            setData(result.data.book);
+        }).catch(err=>{alert(err)})
+    },[data]);
+    if(data == null){
+      return(
+        <div><h2>No Ads</h2></div>
+      )
+    }
+    else{
+return(
+                data &&
+                data.map((item)=>{
+                    return (
+                        <div className="col-md-3 mb-5"><br></br>
+                        <div className="card card-body bg-dark text-center h-100">
+                        <img id='img' className="w-100 mb-2" src={`..\\${item.BookImages}`} alt="Movie Cover" />
+                        <h5 className="text-light card-title">
+                          {item.Title}
+                        </h5>
+                        <h5 className="text-light card-title">
+                          Rs {item.Price}
+                        </h5>
+                        <NavLink className="btn btn-primary" to={{ pathname: "/addetails", title: {title : item.Title}}}>
+                        Ad Details
+                          <i className="fas fa-chevron-right" />
+              </NavLink>
+                        </div>
+                        </div>
+                    )    
+            })
+                )}
+            }
+   
+
+export default Category;
