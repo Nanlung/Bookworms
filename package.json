@@ -5,7 +5,7 @@
   "main": "\u001b[A\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[C\u001b[B\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build":"cd client && npm run build ",
+    "build": "cd client && npm run build ",
     "install-client": "cd client && npm install",
     "heroku-postbuild": "npm run install-client && npm run build",
     "server": "nodemon index.js",

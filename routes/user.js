@@ -29,7 +29,7 @@ router.get('/auth/facebook/profile', userControl.facebookOAuthProfile);
 // delete user account route
 router.delete('/delete', userControl.deleteUser);
 
-// logout
+// user logout route
 router.get('/logout', userControl.logout);
 
 
